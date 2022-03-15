@@ -43,16 +43,17 @@ app.post("/api/meats", async(req,res,next)=> {
     }
 })
 
-// app.delete("/api/meats/:id", async(req,res,next)=> {
-//     try {
-//          const meat = await Meat.findByPk(req.params.id)
-     
-//          Meat.destroy()
-           
-//     } catch(err) {
-//         next(err)
-//     }
-// })
+
+app.delete('/api/meats/:id', async(req, res, next)=>{
+  try {
+    const meat = await Meat.findByPk(req.params.id);
+    await meat.destroy();
+    res.sendStatus(204);
+  }
+  catch(ex){
+    next(ex);
+  }
+});
 
 
 

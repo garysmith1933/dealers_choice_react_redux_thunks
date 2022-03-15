@@ -17,11 +17,11 @@ const CREATE_MEATS = ()=> {
 }
 
 
-// const DELETE_MEATS = ()=> {
-//     return {
-//         type: "DELETE_MEATS"
-//     }
-// }
+const DELETE_MEATS = ()=> {
+    return {
+        type: "DELETE_MEATS"
+    }
+}
 
 
 const reducer = (state=[], action) => {
@@ -33,33 +33,40 @@ const reducer = (state=[], action) => {
       
     }
     
-    // if (action.type === DELETE_MEATS) {
-    //     const state = state.filter(meat => meat.id !== action.meat.id)
-    //     return state;
-    // }
+    if (action.type === DELETE_MEATS) {
+        return state.filter(meat => meat.id !== action.meat.id);
+    }
     
     return state;
 }
 
 
 
-const getMeats = (dispatch)=> {
+const getMeats = ()=> {
   return async()=> {
     let response = await axios.get('/api/meats');
     store.dispatch({ type: LOAD_MEATS, meats: response.data});
   };
 };
 
-const addMeats = (dispatch)=> {
-  return async()=> {
+const addMeats = ()=> {
+  return async(dispatch)=> {
     let response = await axios.post('/api/meats');
     store.dispatch({ type: CREATE_MEATS, meat: response.data});
   };
 };
 
+const removeMeat = (meat)=> {  
+  return async(dispatch)=> {
+     await axios.delete(`/api/meats/${meat.id}`);
+    store.dispatch({ type: DELETE_MEATS, meat});
+  };
+};
+
+
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
- export {getMeats,addMeats}
+ export {getMeats,addMeats, removeMeat}
 export default store
 

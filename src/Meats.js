@@ -1,9 +1,10 @@
 import React from "react"
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import {removeMeat} from '../store'
 
 
-const Meats = ({meats}) => {
+const Meats = ({meats, remove}) => {
 
     return (
          <div>
@@ -11,7 +12,9 @@ const Meats = ({meats}) => {
             {
                 meats.map(meat => {
                     return (
-                        <li key={meat.id}> {meat.name} </li>
+                        <li key={meat.id}> {meat.name} 
+                          <button onClick={()=> remove(meat)}>x</button>
+                        </li>
                     )
                 })
             }
@@ -24,11 +27,22 @@ const Meats = ({meats}) => {
 
 
 
+
 const MapState = (state) => {
    return {
        meats:state
    }
 }
 
+const MapDispatch = (dispatch) => {
+    return {
+        remove: async(meat) => {
+            await dispatch(removeMeat(meat)) 
+        }
+    }
+}
 
-export default connect(MapState)(Meats)
+
+
+
+export default connect(MapState, MapDispatch)(Meats)

@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import axios from 'axios'
 import Meats from "./Meats"
 import {Provider} from "react-redux"
-import AddAndRemove from "./add-delete"
+import Add from "./add-meat"
 
 
 
@@ -20,7 +20,7 @@ export default class App extends Component {
             <div>
                 <h1 className = 'title'> We love all kinds of meats! </h1>
                 <h2> Here are some of our favorites </h2>
-                <AddAndRemove/>
+                <Add/>
                 <Meats/>
             </div>
             )
