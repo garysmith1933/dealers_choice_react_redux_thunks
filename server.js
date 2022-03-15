@@ -34,14 +34,14 @@ app.get("/api/meats", async(req,res,next)=> {
     }
 })
 
-// app.post("/api/meats", async(req,res,next)=> {
-//     try {
-//          res.send(await Meat.generateRandom())
+app.post("/api/meats", async(req,res,next)=> {
+    try {
+         res.send(await Meat.generateRandom())
        
-//     } catch(err) {
-//         next(err)
-//     }
-// })
+    } catch(err) {
+        next(err)
+    }
+})
 
 // app.delete("/api/meats/:id", async(req,res,next)=> {
 //     try {

@@ -7,7 +7,6 @@ const Meats = ({meats}) => {
 
     return (
          <div>
-            <p> This is a test </p>
             <ul> 
             {
                 meats.map(meat => {
@@ -21,6 +20,9 @@ const Meats = ({meats}) => {
         
         )
 }
+
+
+
 
 const MapState = (state) => {
    return {

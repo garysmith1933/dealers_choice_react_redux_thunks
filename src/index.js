@@ -4,13 +4,14 @@ import { render } from 'react-dom';
 import axios from 'axios'
 import Meats from "./Meats"
 import {Provider} from "react-redux"
+import AddAndRemove from "./add-delete"
 
 
 
 
 export default class App extends Component {
     async componentDidMount(props) {
-        // const response = await axios.get("/api/meats").data
+
       await store.dispatch(getMeats())
     }
     
@@ -18,6 +19,8 @@ export default class App extends Component {
         return (
             <div>
                 <h1 className = 'title'> We love all kinds of meats! </h1>
+                <h2> Here are some of our favorites </h2>
+                <AddAndRemove/>
                 <Meats/>
             </div>
             )
