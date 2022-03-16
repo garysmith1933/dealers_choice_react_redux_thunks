@@ -6,7 +6,7 @@ import {addMeats} from "../store"
     const Add = ({add, remove}) => {
         return (
             <div>
-                <button onClick={add}>SEE MORE!</button>
+                <button id='button' onClick={add}>SEE MORE!</button>
             </div>
             )
     }
